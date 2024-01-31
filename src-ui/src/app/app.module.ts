@@ -111,11 +111,13 @@ import { PreviewPopupComponent } from './components/common/preview-popup/preview
 import { SwitchComponent } from './components/common/input/switch/switch.component'
 import { ConfigComponent } from './components/admin/config/config.component'
 import { FileComponent } from './components/common/input/file/file.component'
+import { RotateConfirmDialogComponent } from './components/common/confirm-dialog/rotate-confirm-dialog/rotate-confirm-dialog.component'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { ConfirmButtonComponent } from './components/common/confirm-button/confirm-button.component'
 import { MonetaryComponent } from './components/common/input/monetary/monetary.component'
 import {
   archive,
+  arrowClockwise,
   arrowCounterclockwise,
   arrowDown,
   arrowLeft,
@@ -124,6 +126,7 @@ import {
   arrowRightShort,
   arrowUpRight,
   asterisk,
+  bodyText,
   boxArrowUp,
   boxArrowUpRight,
   boxes,
@@ -201,6 +204,7 @@ import {
 
 const icons = {
   archive,
+  arrowClockwise,
   arrowCounterclockwise,
   arrowDown,
   arrowLeft,
@@ -209,6 +213,7 @@ const icons = {
   arrowRightShort,
   arrowUpRight,
   asterisk,
+  bodyText,
   boxArrowUp,
   boxArrowUpRight,
   boxes,
@@ -445,6 +450,7 @@ function initializeApp(settings: SettingsService) {
     FileComponent,
     ConfirmButtonComponent,
     MonetaryComponent,
+    RotateConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

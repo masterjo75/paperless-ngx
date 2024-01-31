@@ -1,4 +1,6 @@
 import itertools
+import logging
+import os
 
 from django.db.models import Q
 
@@ -9,6 +11,9 @@ from documents.models import StoragePath
 from documents.permissions import set_permissions_for_object
 from documents.tasks import bulk_update_documents
 from documents.tasks import update_document_archive_file
+from paperless import settings
+
+logger = logging.getLogger("paperless.bulk_edit")
 
 
 def set_correspondent(doc_ids, correspondent):
@@ -144,5 +149,35 @@ def set_permissions(doc_ids, set_permissions, owner=None, merge=False):
     affected_docs = [doc.id for doc in qs]
 
     bulk_update_documents.delay(document_ids=affected_docs)
+
+    return "OK"
+
+
+def rotate(doc_ids: list[int], degrees: int):
+    qs = Document.objects.filter(id__in=doc_ids)
+    affected_docs = []
+    import pikepdf
+
+    for doc in qs:
+        if not doc.has_archive_version:
+            logger.warning(
+                f"Document {doc.id} ({doc.source_path}) does not have an archive version, skipping rotation",
+            )
+            continue
+        try:
+            with pikepdf.open(doc.archive_path, allow_overwriting_input=True) as pdf:
+                for page in pdf.pages:
+                    page.Rotate = degrees
+                pdf.save()
+                update_document_archive_file.delay(
+                    document_id=doc.id,
+                )
+                logger.info(f"Rotated document {doc.id} ({path}) by {degrees} degrees")
+                affected_docs.append(doc.id)
+        except Exception as e:
+            logger.exception(f"Error rotating document {doc.id}", e)
+
+    if len(affected_docs) > 0:
+        bulk_update_documents.delay(document_ids=affected_docs)
 
     return "OK"
