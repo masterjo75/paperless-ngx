@@ -116,6 +116,7 @@ import { ConfirmButtonComponent } from './components/common/confirm-button/confi
 import { MonetaryComponent } from './components/common/input/monetary/monetary.component'
 import { RotateConfirmDialogComponent } from './components/common/confirm-dialog/rotate-confirm-dialog/rotate-confirm-dialog.component'
 import { MergeConfirmDialogComponent } from './components/common/confirm-dialog/merge-confirm-dialog/merge-confirm-dialog.component'
+import { SplitConfirmDialogComponent } from './components/common/confirm-dialog/split-confirm-dialog/split-confirm-dialog.component'
 import {
   archive,
   arrowClockwise,
@@ -186,6 +187,7 @@ import {
   plus,
   plusCircle,
   questionCircle,
+  scissors,
   search,
   slashCircle,
   sliders2Vertical,
@@ -274,6 +276,7 @@ const icons = {
   plus,
   plusCircle,
   questionCircle,
+  scissors,
   search,
   slashCircle,
   sliders2Vertical,
@@ -455,6 +458,7 @@ function initializeApp(settings: SettingsService) {
     MonetaryComponent,
     RotateConfirmDialogComponent,
     MergeConfirmDialogComponent,
+    SplitConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
