@@ -111,10 +111,11 @@ import { PreviewPopupComponent } from './components/common/preview-popup/preview
 import { SwitchComponent } from './components/common/input/switch/switch.component'
 import { ConfigComponent } from './components/admin/config/config.component'
 import { FileComponent } from './components/common/input/file/file.component'
-import { RotateConfirmDialogComponent } from './components/common/confirm-dialog/rotate-confirm-dialog/rotate-confirm-dialog.component'
 import { NgxBootstrapIconsModule } from 'ngx-bootstrap-icons'
 import { ConfirmButtonComponent } from './components/common/confirm-button/confirm-button.component'
 import { MonetaryComponent } from './components/common/input/monetary/monetary.component'
+import { RotateConfirmDialogComponent } from './components/common/confirm-dialog/rotate-confirm-dialog/rotate-confirm-dialog.component'
+import { MergeConfirmDialogComponent } from './components/common/confirm-dialog/merge-confirm-dialog/merge-confirm-dialog.component'
 import {
   archive,
   arrowClockwise,
@@ -170,6 +171,7 @@ import {
   hddStack,
   house,
   infoCircle,
+  journals,
   link,
   listTask,
   listUl,
@@ -257,6 +259,7 @@ const icons = {
   hddStack,
   house,
   infoCircle,
+  journals,
   link,
   listTask,
   listUl,
@@ -451,6 +454,7 @@ function initializeApp(settings: SettingsService) {
     ConfirmButtonComponent,
     MonetaryComponent,
     RotateConfirmDialogComponent,
+    MergeConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
